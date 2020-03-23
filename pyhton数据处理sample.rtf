@@ -1,0 +1,305 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #!/usr/bin/env python\
+# coding: utf-8\
+\
+# # partb i\
+\
+# In[ ]:\
+\
+\
+import pandas as pd\
+import glob\
+# the data are inputted from outside glob\
+path = "A09_datafiles/*.csv"\
+for fname in glob.glob(path):\
+    print(fname)\
+\
+\
+# In[2]:\
+\
+\
+import pandas as pd\
+mydf1 = pd.read_csv("A09_datafiles/airlines.csv")\
+mydf1.count()\
+\
+\
+# In[3]:\
+\
+\
+import pandas as pd\
+mydf2 = pd.read_csv("A09_datafiles/weather.csv")\
+mydf2.count()\
+\
+\
+# In[4]:\
+\
+\
+import pandas as pd\
+mydf3 = pd.read_csv("A09_datafiles/airports.csv")\
+mydf3.count()\
+\
+\
+# In[5]:\
+\
+\
+import pandas as pd\
+mydf4 = pd.read_csv("A09_datafiles/planes.csv")\
+mydf4.count()\
+\
+\
+# In[6]:\
+\
+\
+import pandas as pd\
+mydf5 = pd.read_csv("A09_datafiles/flights.csv")\
+mydf5.count()\
+\
+\
+# # partb ii\
+\
+# In[16]:\
+\
+\
+# mydf5 = flights dataset\
+import matplotlib.pyplot as plt\
+\
+fig, ax = plt.subplots(4, 4,figsize=(17,17))\
+\
+# I draw 16 plots of 16 airlines and combined them into one figure\
+# first I subset the dataset to meet two conditions\
+# second, I use the subset to draw the histgrams\
+nineE_delay =mydf5[(mydf5['carrier'] == '9E') & (mydf5['dep_delay'] > 0)]\
+nineE_ontime = mydf5[(mydf5['carrier'] == '9E') & (mydf5['dep_delay'] <= 0)]\
+nineE_delay['dep_delay'].plot(ax=ax[0,0], kind='hist',title = "Endeavor Air Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+nineE_ontime['dep_delay'].plot(ax=ax[0,0], kind='hist',title = "Endeavor Air Inc.",label = 'ontime').legend(loc="upper right")\
+\
+AA_delay =mydf5[(mydf5['carrier'] == 'AA') & (mydf5['dep_delay'] > 0)]\
+AA_ontime = mydf5[(mydf5['carrier'] == 'AA') & (mydf5['dep_delay'] <= 0)]\
+AA_delay['dep_delay'].plot(ax=ax[0,1], kind='hist',title = "American Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+AA_ontime['dep_delay'].plot(ax=ax[0,1], kind='hist',title = "American Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+AS_delay =mydf5[(mydf5['carrier'] == 'AS') & (mydf5['dep_delay'] > 0)]\
+AS_ontime = mydf5[(mydf5['carrier'] == 'AS') & (mydf5['dep_delay'] <= 0)]\
+AS_delay['dep_delay'].plot(ax=ax[0,2], kind='hist',title = "Alaska Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+AS_ontime['dep_delay'].plot(ax=ax[0,2], kind='hist',title = "Alaska Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+B6_delay =mydf5[(mydf5['carrier'] == 'B6') & (mydf5['dep_delay'] > 0)]\
+B6_ontime = mydf5[(mydf5['carrier'] == 'B6') & (mydf5['dep_delay'] <= 0)]\
+B6_delay['dep_delay'].plot(ax=ax[0,3], kind='hist',title = "JetBlue Airways",label = 'Delay',bins = 200).legend(loc="upper right")\
+B6_ontime['dep_delay'].plot(ax=ax[0,3], kind='hist',title = "JetBlue Airways",label = 'ontime').legend(loc="upper right")\
+\
+DL_delay =mydf5[(mydf5['carrier'] == 'DL') & (mydf5['dep_delay'] > 0)]\
+DL_ontime = mydf5[(mydf5['carrier'] == 'DL') & (mydf5['dep_delay'] <= 0)]\
+DL_delay['dep_delay'].plot(ax=ax[1,0], kind='hist',title = "Delta Air Lines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+DL_ontime['dep_delay'].plot(ax=ax[1,0], kind='hist',title = "Delta Air Lines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+EV_delay =mydf5[(mydf5['carrier'] == 'EV') & (mydf5['dep_delay'] > 0)]\
+EV_ontime = mydf5[(mydf5['carrier'] == 'EV') & (mydf5['dep_delay'] <= 0)]\
+EV_delay['dep_delay'].plot(ax=ax[1,1], kind='hist',title = "ExpressJet Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+EV_ontime['dep_delay'].plot(ax=ax[1,1], kind='hist',title = "ExpressJet Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+F9_delay =mydf5[(mydf5['carrier'] == 'F9') & (mydf5['dep_delay'] > 0)]\
+F9_ontime = mydf5[(mydf5['carrier'] == 'F9') & (mydf5['dep_delay'] <= 0)]\
+F9_delay['dep_delay'].plot(ax=ax[1,2], kind='hist',title = "Frontier Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+F9_ontime['dep_delay'].plot(ax=ax[1,2], kind='hist',title = "Frontier Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+FL_delay =mydf5[(mydf5['carrier'] == 'FL') & (mydf5['dep_delay'] > 0)]\
+FL_ontime = mydf5[(mydf5['carrier'] == 'FL') & (mydf5['dep_delay'] <= 0)]\
+FL_delay['dep_delay'].plot(ax=ax[1,3], kind='hist',title = "AirTran Airways Corporation",label = 'Delay',bins = 200).legend(loc="upper right")\
+FL_ontime['dep_delay'].plot(ax=ax[1,3], kind='hist',title = "AirTran Airways Corporation",label = 'ontime').legend(loc="upper right")\
+\
+\
+HA_delay =mydf5[(mydf5['carrier'] == 'HA') & (mydf5['dep_delay'] > 0)]\
+HA_ontime = mydf5[(mydf5['carrier'] == 'HA') & (mydf5['dep_delay'] <= 0)]\
+HA_delay['dep_delay'].plot(ax=ax[2,0], kind='hist',title = "Hawaiian Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+HA_ontime['dep_delay'].plot(ax=ax[2,0], kind='hist',title = "Hawaiian Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+MQ_delay =mydf5[(mydf5['carrier'] == 'MQ') & (mydf5['dep_delay'] > 0)]\
+MQ_ontime = mydf5[(mydf5['carrier'] == 'MQ') & (mydf5['dep_delay'] <= 0)]\
+MQ_delay['dep_delay'].plot(ax=ax[2,1], kind='hist',title = "Envoy Air",label = 'Delay',bins = 200).legend(loc="upper right")\
+MQ_ontime['dep_delay'].plot(ax=ax[2,1], kind='hist',title = "Envoy Air",label = 'ontime').legend(loc="upper right")\
+\
+\
+OO_delay =mydf5[(mydf5['carrier'] == 'HA') & (mydf5['dep_delay'] > 0)]\
+OO_ontime = mydf5[(mydf5['carrier'] == 'HA') & (mydf5['dep_delay'] <= 0)]\
+OO_delay['dep_delay'].plot(ax=ax[2,2], kind='hist',title = "SkyWest Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+OO_ontime['dep_delay'].plot(ax=ax[2,2], kind='hist',title = "SkyWest Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+UA_delay =mydf5[(mydf5['carrier'] == 'UA') & (mydf5['dep_delay'] > 0)]\
+UA_ontime = mydf5[(mydf5['carrier'] == 'UA') & (mydf5['dep_delay'] <= 0)]\
+UA_delay['dep_delay'].plot(ax=ax[2,3], kind='hist',title = "United Air Lines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+UA_ontime['dep_delay'].plot(ax=ax[2,3], kind='hist',title = "United Air Lines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+US_delay =mydf5[(mydf5['carrier'] == 'US') & (mydf5['dep_delay'] > 0)]\
+US_ontime = mydf5[(mydf5['carrier'] == 'US') & (mydf5['dep_delay'] <= 0)]\
+US_delay['dep_delay'].plot(ax=ax[3,0], kind='hist',title = "US Airways Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+US_ontime['dep_delay'].plot(ax=ax[3,0], kind='hist',title = "US Airways Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+VX_delay =mydf5[(mydf5['carrier'] == 'VX') & (mydf5['dep_delay'] > 0)]\
+VX_ontime = mydf5[(mydf5['carrier'] == 'VX') & (mydf5['dep_delay'] <= 0)]\
+VX_delay['dep_delay'].plot(ax=ax[3,1], kind='hist',title = "Virgin America",label = 'Delay',bins = 200).legend(loc="upper right")\
+VX_ontime['dep_delay'].plot(ax=ax[3,1], kind='hist',title = "Virgin America",label = 'ontime').legend(loc="upper right")\
+\
+\
+WN_delay =mydf5[(mydf5['carrier'] == 'WN') & (mydf5['dep_delay'] > 0)]\
+WN_ontime = mydf5[(mydf5['carrier'] == 'WN') & (mydf5['dep_delay'] <= 0)]\
+WN_delay['dep_delay'].plot(ax=ax[3,2], kind='hist',title = "Southwest Airlines Co.",label = 'Delay',bins = 200).legend(loc="upper right")\
+WN_ontime['dep_delay'].plot(ax=ax[3,2], kind='hist',title = "Southwest Airlines Co.",label = 'ontime').legend(loc="upper right")\
+\
+\
+YV_delay =mydf5[(mydf5['carrier'] == 'YV') & (mydf5['dep_delay'] > 0)]\
+YV_ontime = mydf5[(mydf5['carrier'] == 'YV') & (mydf5['dep_delay'] <= 0)]\
+YV_delay['dep_delay'].plot(ax=ax[3,3], kind='hist',title = "Mesa Airlines Inc.",label = 'Delay',bins = 200).legend(loc="upper right")\
+YV_ontime['dep_delay'].plot(ax=ax[3,3], kind='hist',title = "Mesa Airlines Inc.",label = 'ontime').legend(loc="upper right")\
+\
+\
+# # partb iii\
+\
+# ### First, find the top 5 busiest airports accroding to the "dest" column, which means the destination of every airline. From the "dest" column, we can know how many airlines landing on each airport, thus we can know which are the top 5 busiest airports\
+\
+# In[11]:\
+\
+\
+busyair = mydf5[['dest', 'flight']].groupby(['dest']).count()\
+\
+\
+# In[12]:\
+\
+\
+a = busyair.nlargest(5, 'flight')\
+a\
+\
+\
+# ### My assumption is that accoring to different depature time, there are also three types of interval arrival time, which includes -ve(early interval arrival time), zero(on time interval arrival time), +ve(late interval arrival time). So, we need to calculate every airport's histgrams and density plots of these three interval arrival time types.\
+\
+# In[13]:\
+\
+\
+# histgrams\
+import matplotlib.pyplot as plt\
+\
+fig, ax = plt.subplots(2,3,figsize=(10,10))\
+\
+a1 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] > 0)]\
+a2 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] == 0)]\
+a3 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] < 0)]\
+\
+a1['arr_delay'].plot(ax=ax[0,0], kind='hist',label = 'delay time',bins = 200).legend(loc="upper right")\
+a2['arr_delay'].plot(ax=ax[0,0], kind='hist',label = 'on time',bins=200).legend(loc="upper right")\
+a3['arr_delay'].plot(ax=ax[0,0], kind='hist',label = 'early time').legend(loc="upper right")\
+\
+\
+b1 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] > 0)]\
+b2 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] == 0)]\
+b3 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] < 0)]\
+\
+\
+b1['arr_delay'].plot(ax=ax[0,1], kind='hist',label = 'delay time',bins = 200).legend(loc="upper right")\
+b2['arr_delay'].plot(ax=ax[0,1], kind='hist',label = 'on time',bins=200).legend(loc="upper right")\
+b3['arr_delay'].plot(ax=ax[0,1], kind='hist',label = 'ealry time').legend(loc="upper right")\
+\
+c1 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] > 0)]\
+c2 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] == 0)]\
+c3 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] < 0)]\
+\
+\
+c1['arr_delay'].plot(ax=ax[0,2], kind='hist',label = 'delay time',bins = 200).legend(loc="upper right")\
+c2['arr_delay'].plot(ax=ax[0,2], kind='hist',label = 'on time',bins=200).legend(loc="upper right")\
+c3['arr_delay'].plot(ax=ax[0,2], kind='hist',label = 'early time').legend(loc="upper right")\
+\
+\
+d1 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] > 0)]\
+d2 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] == 0)]\
+d3 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] < 0)]\
+\
+d1['arr_delay'].plot(ax=ax[1,0], kind='hist',label = 'delay time',bins = 200).legend(loc="upper right")\
+d2['arr_delay'].plot(ax=ax[1,0], kind='hist',label = 'on time',bins=200).legend(loc="upper right")\
+d3['arr_delay'].plot(ax=ax[1,0], kind='hist',label = 'ealry time').legend(loc="upper right")\
+\
+\
+e1 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] > 0)]\
+e2 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] == 0)]\
+e3 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] < 0)]\
+\
+e1['arr_delay'].plot(ax=ax[1,1], kind='hist',label = 'delay time',bins = 200).legend(loc="upper right")\
+e2['arr_delay'].plot(ax=ax[1,1], kind='hist',label = 'on time',bins=200).legend(loc="upper right")\
+e3['arr_delay'].plot(ax=ax[1,1], kind='hist',label = 'ealry time').legend(loc="upper right")\
+\
+\
+# In[15]:\
+\
+\
+# density plots\
+import seaborn as sns\
+import pandas as pd\
+import matplotlib.pyplot as plt\
+\
+fig, ax = plt.subplots(2,3,figsize=(12,12))\
+\
+\
+a1 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] > 0)]\
+a2 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] == 0)]\
+a3 = mydf5[(mydf5['dest'] =='ORD') & (mydf5['arr_delay'] < 0)]\
+\
+sns.kdeplot(a1['arr_delay'], ax=ax[0,0],shade=True, color="g", alpha=.7,label = 'delay time')\
+sns.kdeplot(a2['arr_delay'], ax=ax[0,0],shade=True, color="black", alpha=.7,label = 'on time')\
+sns.kdeplot(a3['arr_delay'], ax=ax[0,0],shade=True, color="dodgerblue",alpha=.7,label = 'ealry time')\
+\
+\
+b1 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] > 0)]\
+b2 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] == 0)]\
+b3 = mydf5[(mydf5['dest'] =='ATL') & (mydf5['arr_delay'] < 0)]\
+\
+sns.kdeplot(b1['arr_delay'], ax=ax[0,1],shade=True, color="g", alpha=.7,label = 'delay time')\
+sns.kdeplot(b2['arr_delay'], ax=ax[0,1],shade=True, color="black", alpha=.7,label = 'on time')\
+sns.kdeplot(b3['arr_delay'], ax=ax[0,1],shade=True, color="dodgerblue",alpha=.7,label = 'ealry time')\
+\
+c1 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] > 0)]\
+c2 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] == 0)]\
+c3 = mydf5[(mydf5['dest'] =='LAX') & (mydf5['arr_delay'] < 0)]\
+\
+sns.kdeplot(c1['arr_delay'], ax=ax[0,2],shade=True, color="g", alpha=.7,label = 'delay time')\
+sns.kdeplot(c2['arr_delay'], ax=ax[0,2],shade=True, color="black", alpha=.7,label = 'on time')\
+sns.kdeplot(c3['arr_delay'], ax=ax[0,2],shade=True, color="dodgerblue",alpha=.7,label = 'ealry time')\
+\
+\
+\
+d1 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] > 0)]\
+d2 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] == 0)]\
+d3 = mydf5[(mydf5['dest'] =='BOS') & (mydf5['arr_delay'] < 0)]\
+\
+\
+sns.kdeplot(d1['arr_delay'], ax=ax[1,0],shade=True, color="g", alpha=.7,label = 'delay time')\
+sns.kdeplot(d2['arr_delay'], ax=ax[1,0],shade=True, color="black", alpha=.7,label = 'on time')\
+sns.kdeplot(d3['arr_delay'], ax=ax[1,0],shade=True, color="dodgerblue",alpha=.7,label = 'ealry time')\
+\
+\
+\
+e1 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] > 0)]\
+e2 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] == 0)]\
+e3 = mydf5[(mydf5['dest'] =='MCO') & (mydf5['arr_delay'] < 0)]\
+\
+\
+sns.kdeplot(e1['arr_delay'], ax=ax[1,1],shade=True, color="g", alpha=.7,label = 'delay time')\
+sns.kdeplot(e2['arr_delay'], ax=ax[1,1],shade=True, color="black", alpha=.7,label = 'on time')\
+sns.kdeplot(e3['arr_delay'], ax=ax[1,1],shade=True, color="dodgerblue",alpha=.7,label = 'ealry time')\
+\
+\
+# In[ ]:\
+\
+\
+\
+\
+}
